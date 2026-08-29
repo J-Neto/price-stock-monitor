@@ -68,6 +68,20 @@ class Product:
 def check_if_value_changed():
   pass
 
+def price_to_numeric(price_str: str) -> float:
+  price_without_coin = price_str.replace("R$", "") # R$ 54,99 -> 54,99
+  print("price_without_coin: ", price_without_coin)
+  
+  price_with_dot_instead_of_stroke = price_without_coin.replace(",", ".") # 54,99 -> 54.99
+  print("price_with_dot_instead_of_stroke: ", price_with_dot_instead_of_stroke)
+  print("typeof price_with_dot_instead_of_stroke: ", type(price_with_dot_instead_of_stroke))
+  
+  price_float = float(price_with_dot_instead_of_stroke)
+  print("price_float: ", price_float)
+  print("typeof price_float: ", type(price_float))
+  
+  return price_float
+
 def get_product_price(page: Page, product: Product) -> None:
   # Go to product page
   page.goto(url=product['link'], wait_until='domcontentloaded')
@@ -80,6 +94,7 @@ def get_product_price(page: Page, product: Product) -> None:
   match = re.search(r"R\$\s*[\d.,]+", raw_text)
   price = match.group(0) if match else None # Example: R$ 54,99
   
+  # TODO: Tratar exceção de elemento não encontrado
   return price
   
 def save_product_report(page: Page, products: list[Product]):
@@ -87,12 +102,12 @@ def save_product_report(page: Page, products: list[Product]):
     product_price_value = get_product_price(page=page, product=product)
     
     #? Converter valor para inteiro
-    
+    price_float = price_to_numeric(product_price_value)
     
     #? Verificar se o valor mudou com
     # did_value_change = check_if_value_changed()
     #* E salvar o valor
     
-    products_report.append(product_price_value)
+    products_report.append(price_float)
   
   print(products_report)
