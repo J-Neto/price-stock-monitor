@@ -15,8 +15,8 @@
       4. Salvar informações do produto atual
    3. Se não:
       1. Salvar log de erro
-4. Gerar relatório do que mudou e o que não mudou
-5. Mostrar para o cliente
+5. Gerar relatório do que mudou e o que não mudou
+6. Mostrar para o cliente
 
 #### 1. Definir produtos a serem monitorados
 
@@ -41,23 +41,38 @@ Buscar items de acordo com o **item 4**
 
 #### 4. Salvar informações do produto
 
-| ID | Produto                                  | Link                                                                                                                                              | Valor | Data | Mudou o preço? |
-| -- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---- | --------------- |
-|    | Camiseta Oversized Legacy Azul Marinho   | [usealphaco.com.br/products/camiseta-legacy-oversized-azul-marinho](https://usealphaco.com.br/products/camiseta-legacy-oversized-azul-marinho)     |       |      |                 |
-|    | Camiseta Poliamida Prime Branco          | [usealphaco.com.br/products/camiseta-poliamida-prime-branco](https://usealphaco.com.br/products/camiseta-poliamida-prime-branco)                   |       |      |                 |
-|    | Camiseta Oversized Plate Marrom Telha    | [usealphaco.com.br/products/camiseta-oversized-plate-marrom-telha](https://usealphaco.com.br/products/camiseta-oversized-plate-marrom-telha)       |       |      |                 |
-|    | Camiseta Oversized Plate Off White       | [usealphaco.com.br/products/camiseta-oversized-plate-off-white](https://usealphaco.com.br/products/camiseta-oversized-plate-off-white)             |       |      |                 |
-|    | Camiseta Oversized Legacy Marrom Telha   | [usealphaco.com.br/products/camiseta-oversized-legacy-marrom-telha](https://usealphaco.com.br/products/camiseta-oversized-legacy-marrom-telha)     |       |      |                 |
-|    | Regata Machão Oversized Lupus Preto     | [usealphaco.com.br/products/regata-machao-oversized-lupus-preto](https://usealphaco.com.br/products/regata-machao-oversized-lupus-preto)           |       |      |                 |
-|    | Camiseta Oversized Empire Bege Duna      | [usealphaco.com.br/products/camiseta-oversized-empire-bege-duna](https://usealphaco.com.br/products/camiseta-oversized-empire-bege-duna)           |       |      |                 |
-|    | Camiseta Oversized Cutting Season Branco | [usealphaco.com.br/products/camiseta-oversized-cutting-season-branco](https://usealphaco.com.br/products/camiseta-oversized-cutting-season-branco) |       |      |                 |
-|    | Camiseta Oversized In Motion Off White   | [usealphaco.com.br/products/camiseta-oversized-in-motion-off-white](https://usealphaco.com.br/products/camiseta-oversized-in-motion-off-white)     |       |      |                 |
-|    | Camiseta Oversized Hunter Preto          | [usealphaco.com.br/products/camiseta-oversized-hunter-preto](https://usealphaco.com.br/products/camiseta-oversized-hunter-preto)                   |       |      |                 |
+Tabela de produtos
+
+| id | product                                  | url                                                                                                                                               |
+| -- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1  | Camiseta Oversized Legacy Azul Marinho   | [usealphaco.com.br/products/camiseta-legacy-oversized-azul-marinho](https://usealphaco.com.br/products/camiseta-legacy-oversized-azul-marinho)     |
+| 2  | Camiseta Poliamida Prime Branco          | [usealphaco.com.br/products/camiseta-poliamida-prime-branco](https://usealphaco.com.br/products/camiseta-poliamida-prime-branco)                   |
+| 3  | Camiseta Oversized Plate Marrom Telha    | [usealphaco.com.br/products/camiseta-oversized-plate-marrom-telha](https://usealphaco.com.br/products/camiseta-oversized-plate-marrom-telha)       |
+| 4  | Camiseta Oversized Plate Off White       | [usealphaco.com.br/products/camiseta-oversized-plate-off-white](https://usealphaco.com.br/products/camiseta-oversized-plate-off-white)             |
+| 5  | Camiseta Oversized Legacy Marrom Telha   | [usealphaco.com.br/products/camiseta-oversized-legacy-marrom-telha](https://usealphaco.com.br/products/camiseta-oversized-legacy-marrom-telha)     |
+| 6  | Regata Machão Oversized Lupus Preto     | [usealphaco.com.br/products/regata-machao-oversized-lupus-preto](https://usealphaco.com.br/products/regata-machao-oversized-lupus-preto)           |
+| 7  | Camiseta Oversized Empire Bege Duna      | [usealphaco.com.br/products/camiseta-oversized-empire-bege-duna](https://usealphaco.com.br/products/camiseta-oversized-empire-bege-duna)           |
+| 8  | Camiseta Oversized Cutting Season Branco | [usealphaco.com.br/products/camiseta-oversized-cutting-season-branco](https://usealphaco.com.br/products/camiseta-oversized-cutting-season-branco) |
+| 9  | Camiseta Oversized In Motion Off White   | [usealphaco.com.br/products/camiseta-oversized-in-motion-off-white](https://usealphaco.com.br/products/camiseta-oversized-in-motion-off-white)     |
+| 10 | Camiseta Oversized Hunter Preto          | [usealphaco.com.br/products/camiseta-oversized-hunter-preto](https://usealphaco.com.br/products/camiseta-oversized-hunter-preto)                   |
+
+
+Tabela de registros (relatorio)
+
+| id | product_id | value | date | didValueChange |
+| -- | ---------- | ----- | ---- | -------------- |
+|    |            |       |      |                |
+|    |            |       |      |                |
+
+
+
 
 #### 5. Mostrar para o cliente
 
 * Montar um CSV com as informações
 * Enviar via email
+
+Se quiser versionar um exemplo de dado, use um arquivo separado tipo 'data/.gitkeep' ou um exemplo de amostra.
 
 ```python
 # Problema 1 - Valor por hora
