@@ -1,10 +1,18 @@
 from playwright.sync_api import sync_playwright
-from src.products import mock_product_list
 from src.products import save_product_report
+import json
 
-url = 'https://usealphaco.com.br/'
 
 
+# 1. Read JSON before opening the browser
+# Path to JSON file
+file_path = "data\mock_product_list.json"
+
+# Open and parse file
+with open(file_path, "r", encoding="utf-8") as file:
+  products = json.load(file)
+
+# 2. Open the browser
 with sync_playwright() as p:
   browser = p.chromium.launch(
     headless=False,
@@ -32,9 +40,13 @@ with sync_playwright() as p:
   page.set_default_navigation_timeout(30000) #30s
   page.set_default_navigation_timeout(60000) #60s
   
-  page.goto(url=url, wait_until='domcontentloaded')
+  # Website url
+  website_url = 'https://usealphaco.com.br/'
   
-  save_product_report(page=page, products=mock_product_list)
+  page.goto(url=website_url, wait_until='domcontentloaded')
+  
+  # 3. Get product prices
+  save_product_report(page=page, products=products)
   input('..........\nPress any key to continue')
   
   browser.close()
