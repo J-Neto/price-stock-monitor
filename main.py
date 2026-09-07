@@ -37,7 +37,7 @@ with sync_playwright() as p:
   
   page = context.new_page()
   
-  page.set_default_navigation_timeout(30000) #30s
+  page.set_default_timeout(30000) #30s
   page.set_default_navigation_timeout(60000) #60s
   
   # Website url
