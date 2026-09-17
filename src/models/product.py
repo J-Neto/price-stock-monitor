@@ -44,13 +44,13 @@ class Product:
   
   @url.setter
   def url(self, value: str):
-    validPrefixes = ("http://", "https://")
+    valid_prefixes = ("http://", "https://")
     
     if not isinstance(value, str):
       raise InvalidURLError("URL Error! \nMessage: type must be string!")
     elif len(value.strip()) == 0:
       raise EmptyURLError("URL Error! \nMessage: URL cannot be empty!")
-    elif not value.startswith(validPrefixes):
+    elif not value.startswith(valid_prefixes) or value in valid_prefixes:
       raise InvalidURLError("URL Error! \nMessage: Invalid URL")
     else:
       self._url = value
@@ -63,7 +63,7 @@ class Product:
   def price(self, value: float):
     if value is None:
       self._price = value
-    elif not isinstance(value, (float, int)):
+    elif isinstance(value, bool) or not isinstance(value, (float, int)):
       raise InvalidPriceError("Value Error! \nMessage: type must be numeric!")
     elif value <= 0:
       raise InvalidPriceError("Value Error! \nMessage: value must be higher than 0!")
